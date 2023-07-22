@@ -46,7 +46,7 @@ public class SecurityConfig {
 		http.logout()
 				.logoutUrl("/sign-out"); // post request to /sign-out
 
-		http.csrf().disable();
+		http.csrf().disable().cors();
 
 		return http.build();
 	}
