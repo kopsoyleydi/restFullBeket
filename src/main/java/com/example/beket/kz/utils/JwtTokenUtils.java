@@ -11,13 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.time.Duration;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenUtils {
@@ -45,6 +40,10 @@ public class JwtTokenUtils {
 			Map<String, Object> extraClaims,
 			UserDetails userDetails
 	) {
+		List<String> rolesList = userDetails.getAuthorities().stream()
+				.map(GrantedAuthority::getAuthority)
+				.toList();
+		extraClaims.put("permissions",rolesList);
 		return buildToken(extraClaims, userDetails, jwtExpiration);
 	}
 
@@ -96,6 +95,6 @@ public class JwtTokenUtils {
 		return Keys.hmacShaKeyFor(keyBytes);
 	}
 	public List<String> getRoles(String token) {
-		return extractAllClaims(token).get("roles", List.class);
+		return extractAllClaims(token).get("permissions", List.class);
 	}
 }

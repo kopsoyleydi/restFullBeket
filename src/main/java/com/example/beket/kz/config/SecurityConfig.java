@@ -38,6 +38,7 @@ public class SecurityConfig {
 
 		http.cors().disable().authorizeHttpRequests()
 				.requestMatchers("/api").authenticated()
+				.dispatcherTypeMatchers(HttpMethod.valueOf("/user")).authenticated()
 						.requestMatchers("/admin").hasRole("ADMIN")
 						.shouldFilterAllDispatcherTypes(true).anyRequest().permitAll()
 						.and().exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
