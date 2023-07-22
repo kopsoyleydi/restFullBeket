@@ -43,4 +43,8 @@ public class RoadImpl implements RoadInterface {
 	public List<ListOfRoads> getRoadsByDepartureCityId(Long id) {
 		return roadsRepository.findAllByDepartureId(id);
 	}
+
+	public List<ListOfRoads> getRoadsFyFilter(String departure,String arrival, String departureDate){
+		return roadsRepository.getRoadByFilterParameter(departure,arrival,departureDate);
+	}
 }
