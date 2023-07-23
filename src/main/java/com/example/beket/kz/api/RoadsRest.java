@@ -19,13 +19,12 @@ public class RoadsRest {
 
 	private final RoadService roadService;
 
-	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/getRoads")
 	public List<RoadsDTO> getAllRoads(){
 		return roadService.getAllRoads();
 	}
 
-	@PreAuthorize("isAuthenticated()")
+
 	@GetMapping(value = "/getRoadByFilter")
 	public List<RoadsDTO> getRoadsByFilter(@RequestBody FilterDTO filterDTO){
 		return roadService.getRoadFyFilter(filterDTO);

@@ -19,4 +19,6 @@ public class CityRest {
 	public List<CityDTO> getAllCities(){
 		return cityService.getAllCities();
 	}
+
+
 }

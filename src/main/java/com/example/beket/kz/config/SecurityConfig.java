@@ -25,6 +25,7 @@ public class SecurityConfig {
 	public UserService userService() {
 		return new UserService();
 	}
+
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 
@@ -37,11 +38,11 @@ public class SecurityConfig {
 		builder.userDetailsService(userService()).passwordEncoder(passwordEncoder());
 
 		http.cors().disable().authorizeHttpRequests()
-				.requestMatchers("/api").authenticated()
+				.requestMatchers("/api").authenticated().requestMatchers("/api/**").authenticated()
 				.dispatcherTypeMatchers(HttpMethod.valueOf("/user")).authenticated()
-						.requestMatchers("/admin").hasRole("ADMIN")
-						.shouldFilterAllDispatcherTypes(true).anyRequest().permitAll()
-						.and().exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+				.requestMatchers("/admin").hasRole("ADMIN").requestMatchers("/admin/**").hasRole("ADMIN")
+				.shouldFilterAllDispatcherTypes(true).anyRequest().permitAll()
+				.and().exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
 				.and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		http.logout()
 				.logoutUrl("/sign-out"); // post request to /sign-out

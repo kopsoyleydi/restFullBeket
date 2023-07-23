@@ -34,10 +34,5 @@ public class AuthRest {
 		return authService.createNewUser(registrationUserDto);
 	}
 
-	@GetMapping("/admin")
-	public List<User> getUser(){
-		return user.getAllUsers();
-	}
-
 
 }

@@ -1,25 +1,27 @@
 package com.example.beket.kz.api;
 
 
-import com.example.beket.kz.model.User;
-import com.example.beket.kz.repoImpl.UserImpl;
+import com.example.beket.kz.dto.MainUserDTO;
+import com.example.beket.kz.service.UserRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/user")
 @RequiredArgsConstructor
 public class UserRest {
-	private final UserImpl userImpl;
+	private final UserRestService userRestService;
 
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/getAllUsers")
-	public List<User> getAllUsers(){
-		return userImpl.getAllUsers();
+	@GetMapping(value = "/getProfile")
+	public MainUserDTO getProfile(){
+		return userRestService.getSessionUser();
+	}
+
+	@PreAuthorize("isAuthenticated()")
+	@PutMapping (value = "/updateUserParam")
+	public MainUserDTO updateUser(@RequestBody MainUserDTO mainUserDTO){
+		return userRestService.updateUser(mainUserDTO);
 	}
 }

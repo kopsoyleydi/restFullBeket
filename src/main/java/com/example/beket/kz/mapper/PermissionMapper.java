@@ -3,10 +3,9 @@ package com.example.beket.kz.mapper;
 
 
 import com.example.beket.kz.dto.PermissionDTO;
+import com.example.beket.kz.model.Permissions;
 import org.mapstruct.Mapper;
 
-import java.security.Permission;
-import java.security.Permissions;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
