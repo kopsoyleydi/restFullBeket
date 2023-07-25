@@ -4,7 +4,6 @@ import com.example.beket.kz.dto.FilterDTO;
 import com.example.beket.kz.dto.RoadsDTO;
 import com.example.beket.kz.service.RoadService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,6 +1,5 @@
 package com.example.beket.kz.exeption;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
