@@ -38,4 +38,8 @@ public class CityImpl implements CityInterface {
 	public void deleteCityById(Long id) {
 		cityRepository.deleteById(id);
 	}
+
+	public ListOfCities getCityByName(String name){
+		return cityRepository.findByName(name);
+	}
 }

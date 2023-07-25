@@ -1,5 +1,6 @@
 package com.example.beket.kz.repoImpl;
 
+import com.example.beket.kz.model.ListOfCities;
 import com.example.beket.kz.model.ListOfStation;
 import com.example.beket.kz.repoInterface.StationInterface;
 import com.example.beket.kz.repository.StationRepository;
@@ -13,6 +14,8 @@ import java.util.List;
 public class StationImpl implements StationInterface {
 
 	private final StationRepository stationRepository;
+
+	private final CityImpl cityImpl;
 
 
 	@Override
@@ -38,5 +41,12 @@ public class StationImpl implements StationInterface {
 	@Override
 	public void deleteStationById(Long id) {
 		stationRepository.deleteById(id);
+	}
+
+	public List<ListOfStation> getStationsByCityId(Long id){
+		ListOfCities cities = cityImpl.getCityById(id);
+		String name = cities.getName();
+		ListOfCities cityByName = cityImpl.getCityByName(name);
+		return cityByName.getStations();
 	}
 }

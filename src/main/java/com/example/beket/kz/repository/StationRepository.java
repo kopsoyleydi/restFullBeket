@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Transactional
 public interface StationRepository extends JpaRepository<ListOfStation,Long> {
 	ListOfStation findAllById(Long id);
+
 }
