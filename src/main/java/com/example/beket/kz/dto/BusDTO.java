@@ -13,7 +13,7 @@ public class BusDTO {
 
 	private Long id;
 	@ManyToOne
-	private StationDTO station_id;
+	private StationDTO stationId;
 
 	private int places;
 
