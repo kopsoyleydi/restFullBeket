@@ -1,7 +1,9 @@
 package com.example.beket.kz.api;
 
 
+import com.example.beket.kz.dto.JwtResponse;
 import com.example.beket.kz.dto.MainUserDTO;
+import com.example.beket.kz.dto.TokenDTO;
 import com.example.beket.kz.service.UserRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,10 +15,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserRest {
 	private final UserRestService userRestService;
 
-	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/getProfile")
-	public MainUserDTO getProfile(){
-		return userRestService.getSessionUser();
+	public MainUserDTO getProfile(@RequestBody TokenDTO tokenDTO){
+		return userRestService.getProfile(tokenDTO.getToken());
 	}
 
 	@PreAuthorize("isAuthenticated()")

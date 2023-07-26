@@ -17,8 +17,8 @@ public class UserRestService {
 
 	private final UserService userService;
 
-	public MainUserDTO getSessionUser(){
-		return mapper.toDtoUser(userService.getCurrentSessionUser());
+	public MainUserDTO getProfile(String token){
+		return mapper.toDtoUser(userService.getProfile(token));
 	}
 
 	public MainUserDTO updateUser(MainUserDTO mainUserDTO){

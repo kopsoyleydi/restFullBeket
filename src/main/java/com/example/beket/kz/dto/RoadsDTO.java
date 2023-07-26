@@ -1,8 +1,5 @@
 package com.example.beket.kz.dto;
 
-
-
-
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +23,8 @@ public class RoadsDTO {
 	private String departure_date;
 
 	private String arrival_date;
+
+	private int price;
 
 	@ManyToOne
 	private BusDTO bus_id;

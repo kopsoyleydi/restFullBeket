@@ -31,6 +31,9 @@ public class ListOfRoads extends BaseModel {
 	@Column(name = "arrival_date")
 	private String arrival_date;
 
+	@Column(name = "price")
+	private int price;
+
 	@ManyToOne
 	private ListOfBus bus_id;
 

@@ -3,8 +3,10 @@ package com.example.beket.kz.service;
 import com.example.beket.kz.dto.AuthRequest;
 import com.example.beket.kz.dto.RegistrationUserDto;
 import com.example.beket.kz.mapper.RegistrationUserMapper;
+import com.example.beket.kz.model.Countries;
 import com.example.beket.kz.model.Permissions;
 import com.example.beket.kz.model.User;
+import com.example.beket.kz.repoImpl.CountryImpl;
 import com.example.beket.kz.repoImpl.PermissionImpl;
 import com.example.beket.kz.repoImpl.UserImpl;
 import com.example.beket.kz.utils.JwtTokenUtils;
@@ -36,6 +38,9 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private CountryImpl countryImpl;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userImpl.getUserByEmail(username);
@@ -49,10 +54,7 @@ public class UserService implements UserDetailsService {
 	public User getCurrentSessionUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
-			User user = (User) authentication.getPrincipal();
-			if (user != null) {
-				return user;
-			}
+			return (User) authentication.getPrincipal();
 		}
 		return null;
 	}
@@ -62,11 +64,13 @@ public class UserService implements UserDetailsService {
 	}
 
 	public User createNewUser(RegistrationUserDto registrationUserDto){
+		Countries countries = countryImpl.getCountryById(registrationUserDto.getCitizenship().getId());
 		User user = new User();
 		user.setName(registrationUserDto.getName());
 		user.setEmail(registrationUserDto.getEmail());
-		user.setCitizenship(registrationUserDto.getCitizenship());
+		user.setCitizenship(countries);
 		user.setPermissions((List<Permissions>) permission.getPermissionById(1L));
+		user.setPatronymic(registrationUserDto.getPatronymic());
 		user.setNumberOfDocument(registrationUserDto.getNumberOfDocument());
 		user.setPassword(passwordEncoder.encode(registrationUserDto.getPassword()));
 		return userImpl.addUser(user);
@@ -81,5 +85,8 @@ public class UserService implements UserDetailsService {
 		}
 		assert userDetails != null;
 		return jwtTokenUtils.generateToken(userDetails);
+	}
+	public User getProfile(String token){
+		return userImpl.getUserByEmail(jwtTokenUtils.extractUsername(token));
 	}
 }

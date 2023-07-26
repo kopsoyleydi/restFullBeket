@@ -22,18 +22,27 @@ public class User extends BaseModel implements UserDetails {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "surname")
+	private String surname;
 
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "citizenship")
-	private String citizenship;
+	@ManyToOne
+	private Countries citizenship;
+
+	@Column(name = "patronymic")
+	private String patronymic;
+
 
 	@Column(name = "numberOfDocument")
 	private String numberOfDocument;
 
 	@Column(name = "phoneNumber")
 	private String phoneNumber;
+
+	@ManyToOne
+	private DocumentType documentType;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Permissions> permissions;

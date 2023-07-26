@@ -14,7 +14,6 @@ public class Review extends BaseModel {
 
 	private String comment;
 
-
 	@ManyToOne
 	private User user;
 

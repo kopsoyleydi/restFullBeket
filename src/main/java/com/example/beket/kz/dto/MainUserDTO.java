@@ -3,6 +3,7 @@ package com.example.beket.kz.dto;
 
 
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,10 @@ public class MainUserDTO {
 
 	private String surname;
 
-	private String citizenship;
+	private String patronymic;
+
+	@ManyToOne
+	private CountryDTO citizenship;
 
 	private String numberOfDocument;
 
