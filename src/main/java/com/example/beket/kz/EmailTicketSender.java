@@ -20,7 +20,7 @@ public class EmailTicketSender {
 		message.setTo(toEmail);
 		String body = "Departure location: " + tickets.getRoadId().getDeparture().getStations().get(0).getAddress() +
 				", your bus gov number: " + tickets.getRoadId().getBus_id().getGovNumber() + ", your place in this: "
-				+ tickets.getPlace() + ", departure date: " + tickets.getRoadId().getDeparture_date() + ", ticket prime code: "
+				+ tickets.getPlace() + ", departure date: " + tickets.getRoadId().getDeparture_date() + ", departure-time: "+tickets.getRoadId().getDeparture_time()+ ", ticket prime code: "
 				+ tickets.getPrimeCodeTicket() + ", please scan this code. ";
 		message.setText(body);
 		message.setSubject(subject);
