@@ -1,7 +1,6 @@
 package com.example.beket.kz.api;
 
 
-import com.example.beket.kz.dto.JwtResponse;
 import com.example.beket.kz.dto.MainUserDTO;
 import com.example.beket.kz.dto.TokenDTO;
 import com.example.beket.kz.service.UserRestService;

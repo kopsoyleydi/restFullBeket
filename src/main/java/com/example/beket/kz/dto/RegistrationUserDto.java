@@ -1,7 +1,6 @@
 package com.example.beket.kz.dto;
 
 
-import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 

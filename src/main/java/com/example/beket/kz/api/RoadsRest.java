@@ -16,8 +16,6 @@ public class RoadsRest {
 
 	private final RoadService roadService;
 
-	private final CheckPlaceInBus checkPlaceInBus;
-
 	@GetMapping(value = "/getRoads")
 	public List<RoadsDTO> getAllRoads(){
 		return roadService.getAllRoads();

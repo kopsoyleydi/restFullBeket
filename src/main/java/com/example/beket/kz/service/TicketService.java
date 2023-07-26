@@ -2,7 +2,9 @@ package com.example.beket.kz.service;
 
 import com.example.beket.kz.EmailTicketSender;
 import com.example.beket.kz.dto.BookingPlaceDTO;
+import com.example.beket.kz.dto.JwtResponse;
 import com.example.beket.kz.dto.TicketDTO;
+import com.example.beket.kz.dto.TokenDTO;
 import com.example.beket.kz.mapper.*;
 import com.example.beket.kz.model.ListOfRoads;
 import com.example.beket.kz.model.Ticket;
@@ -13,6 +15,8 @@ import com.example.beket.kz.repoImpl.UserImpl;
 import com.example.beket.kz.utils.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -57,6 +61,12 @@ public class TicketService {
 			return ticketMapper.toDto(ticketImpl.createTicket(ticket));
 		}
 		return null;
+	}
+
+	public List<TicketDTO> getTicketsByUserId(TokenDTO tokenDTO){
+		User user = userImpl.getUserByEmail(jwtTokenUtils.extractUsername(tokenDTO.getToken()));
+		List<Ticket> tickets = ticketImpl.getTicketByUserId(user.getId());
+		return ticketMapper.toDtoList(tickets);
 	}
 
 }

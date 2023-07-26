@@ -1,7 +1,6 @@
 package com.example.beket.kz.repoInterface;
 
 import com.example.beket.kz.model.ListOfBus;
-import com.example.beket.kz.model.ListOfStation;
 
 import java.util.List;
 
