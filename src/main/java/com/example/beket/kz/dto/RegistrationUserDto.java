@@ -15,14 +15,5 @@ public class RegistrationUserDto {
 
 	private String confirmPassword;
 
-	private String name;
-
-	private String surname;
-	private String patronymic;
-
-	@ManyToOne
-	private CountryDTO citizenship;
-	private String numberOfDocument;
-
 	private String phoneNumber;
 }

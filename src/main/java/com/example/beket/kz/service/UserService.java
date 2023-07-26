@@ -3,7 +3,6 @@ package com.example.beket.kz.service;
 import com.example.beket.kz.dto.AuthRequest;
 import com.example.beket.kz.dto.RegistrationUserDto;
 import com.example.beket.kz.mapper.RegistrationUserMapper;
-import com.example.beket.kz.model.Countries;
 import com.example.beket.kz.model.Permissions;
 import com.example.beket.kz.model.User;
 import com.example.beket.kz.repoImpl.CountryImpl;
@@ -64,14 +63,9 @@ public class UserService implements UserDetailsService {
 	}
 
 	public User createNewUser(RegistrationUserDto registrationUserDto){
-		Countries countries = countryImpl.getCountryById(registrationUserDto.getCitizenship().getId());
 		User user = new User();
-		user.setName(registrationUserDto.getName());
 		user.setEmail(registrationUserDto.getEmail());
-		user.setCitizenship(countries);
 		user.setPermissions((List<Permissions>) permission.getPermissionById(1L));
-		user.setPatronymic(registrationUserDto.getPatronymic());
-		user.setNumberOfDocument(registrationUserDto.getNumberOfDocument());
 		user.setPassword(passwordEncoder.encode(registrationUserDto.getPassword()));
 		return userImpl.addUser(user);
 	}

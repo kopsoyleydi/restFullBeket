@@ -34,6 +34,8 @@ public class MainUserDTO {
 	private String numberOfDocument;
 
 	private String phoneNumber;
+
+	private String dateOfBirth;
 	@ManyToMany
 	private List<PermissionDTO> permissions;
 }

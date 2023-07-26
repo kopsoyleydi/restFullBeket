@@ -1,5 +1,6 @@
 package com.example.beket.kz.repoImpl;
 
+import com.example.beket.kz.model.ListOfRoads;
 import com.example.beket.kz.model.Ticket;
 import com.example.beket.kz.repoInterface.TicketInterface;
 import com.example.beket.kz.repository.TicketRepository;
@@ -32,5 +33,9 @@ public class TicketImpl implements TicketInterface {
 	@Override
 	public List<Ticket> getTicketByUserId(Long id) {
 		return ticketRepository.findAllByUserId(id);
+	}
+
+	public List<Ticket> getTicketByRoadId(ListOfRoads roads){
+		return ticketRepository.findAllByRoadId(roads);
 	}
 }
