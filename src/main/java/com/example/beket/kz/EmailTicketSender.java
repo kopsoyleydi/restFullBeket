@@ -12,6 +12,7 @@ public class EmailTicketSender {
 
 	private final JavaMailSender mailSender;
 
+
 	public void sendEmail(String toEmail,
 	                      String subject,
 	                      Ticket tickets) {
