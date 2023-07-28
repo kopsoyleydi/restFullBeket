@@ -1,17 +1,13 @@
 package com.example.beket.kz.api;
 
-import com.example.beket.kz.dto.BusDTO;
-import com.example.beket.kz.dto.CityDTO;
-import com.example.beket.kz.dto.StationDTO;
+import com.example.beket.kz.dto.*;
 import com.example.beket.kz.service.BusService;
 import com.example.beket.kz.service.CityService;
+import com.example.beket.kz.service.RoadService;
 import com.example.beket.kz.service.StationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +22,8 @@ public class WithoutAuthRest {
 
 	private final BusService busService;
 
+	private final RoadService roadService;
+
 	@GetMapping(value = "/getAllCities")
 	public List<CityDTO> getAllCities(){
 		return cityService.getAllCities();
@@ -39,6 +37,11 @@ public class WithoutAuthRest {
 	@GetMapping(value = "/getStationsByCityId")
 	public List<StationDTO> getStationsByCityId(@RequestParam Long cityId){
 		return stationService.getStationsByCityId(cityId);
+	}
+
+	@GetMapping(value = "/getRoadByFilter")
+	public List<RoadsDTO> getRoadsByFilter(@RequestBody FilterDTO filterDTO){
+		return roadService.getRoadFyFilter(filterDTO);
 	}
 
 	@GetMapping(value = "/getBusByStationId")

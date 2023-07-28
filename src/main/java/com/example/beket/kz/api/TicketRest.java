@@ -2,7 +2,6 @@ package com.example.beket.kz.api;
 
 
 import com.example.beket.kz.dto.BookingPlaceDTO;
-import com.example.beket.kz.dto.JwtResponse;
 import com.example.beket.kz.dto.TicketDTO;
 import com.example.beket.kz.dto.TokenDTO;
 import com.example.beket.kz.service.TicketService;
