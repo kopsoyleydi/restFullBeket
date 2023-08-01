@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-
-    <changeSet id="create" author="admin">
-        <sqlFile
-                dbms="mysql"
-                encoding="UTF-8"
-                endDelimiter=";"
-                path="db/changelog/changes/create.sql"
-                relativeToChangelogFile="false"
-                stripComments="true"
-                splitStatements="true"
-        />
-    </changeSet>
-
-    <changeSet id="insert" author="admin">
-        <sqlFile
-                dbms="mysql"
-                encoding="UTF-8"
-                endDelimiter=";"
-                path="db/changelog/changes/insert.sql"
-                relativeToChangelogFile="false"
-                stripComments="true"
-                splitStatements="true"
-        />
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="init" author="author">
+        <sqlFile encoding="utf8" path="db/changelog/changes/create.sql"/>
+        <sqlFile encoding="utf8" path="db/changelog/changes/insert.sql"/>
     </changeSet>
 </databaseChangeLog>

@@ -1,9 +1,9 @@
 create table stations
 (
     id           bigint auto_increment,
-    address      varchar(255),
-    contact      varchar(255),
-    station_name varchar(255),
+    address      text,
+    contact      text,
+    station_name text,
     primary key (id)
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE buses
 CREATE TABLE cities
 (
     id        bigint AUTO_INCREMENT,
-    name      VARCHAR(255),
+    name      VARCHAR(50),
     shortName VARCHAR(50),
     primary key (id)
 );
