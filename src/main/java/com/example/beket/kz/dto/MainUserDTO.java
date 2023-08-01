@@ -29,7 +29,7 @@ public class MainUserDTO {
 	private String patronymic;
 
 	@ManyToOne
-	private CountryDTO citizenship;
+	private CountryDTO citizenship_id;
 
 	private String numberOfDocument;
 

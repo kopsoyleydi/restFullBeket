@@ -15,7 +15,7 @@ public class PermissionImpl implements PermissionInterface {
 	private final PermissionRepository permissionRepository;
 
 	@Override
-	public Permissions getPermissionById(Long id) {
+	public List<Permissions> getPermissionById(Long id) {
 		return permissionRepository.findAllById(id);
 	}
 

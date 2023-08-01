@@ -29,7 +29,7 @@ public class User extends BaseModel implements UserDetails {
 	private String password;
 
 	@ManyToOne
-	private Countries citizenship;
+	private Countries citizenship_id;
 
 	@Column(name = "patronymic")
 	private String patronymic;

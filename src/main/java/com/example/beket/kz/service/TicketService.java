@@ -49,7 +49,7 @@ public class TicketService {
 			user.setPatronymic(bookingPlaceDTO.getPatronymic());
 			user.setDocumentType(documentTypeMapper.toModel(bookingPlaceDTO.getDocumentType()));
 			user.setNumberOfDocument(bookingPlaceDTO.getNumberOfDocument());
-			user.setCitizenship(countryMapper.toModel(bookingPlaceDTO.getCitizenship()));
+			user.setCitizenship_id(countryMapper.toModel(bookingPlaceDTO.getCitizenship()));
 			user.setDateOfBirth(bookingPlaceDTO.getDateOfBirth());
 			ListOfRoads roads = roadImpl.getRoadById(bookingPlaceDTO.getRoadId().getId());
 			ticket.setRoadId(roads);

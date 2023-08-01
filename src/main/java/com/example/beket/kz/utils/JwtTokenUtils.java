@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenUtils {
@@ -27,7 +28,14 @@ public class JwtTokenUtils {
 	private long refreshExpiration;
 
 	public String extractUsername(String token) {
-		return extractClaim(token, Claims::getSubject);
+		String username;
+		try {
+			final Claims claims = this.extractAllClaims(token);
+			username = claims.getSubject();
+		} catch (Exception e) {
+			username = null;
+		}
+		return username;
 	}
 
 	public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -61,13 +69,12 @@ public class JwtTokenUtils {
 			UserDetails userDetails,
 			long expiration
 	) {
-		return Jwts
-				.builder()
+		return Jwts.builder()
 				.setClaims(extraClaims)
 				.setSubject(userDetails.getUsername())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + expiration))
-				.signWith(getSignInKey(), SignatureAlgorithm.HS256)
+				.signWith(getSignInKey(),SignatureAlgorithm.HS256)
 				.compact();
 	}
 
@@ -85,12 +92,16 @@ public class JwtTokenUtils {
 	}
 
 	private Claims extractAllClaims(String token) {
-		return Jwts
-				.parserBuilder()
-				.setSigningKey(getSignInKey())
-				.build()
-				.parseClaimsJws(token)
-				.getBody();
+		Claims claims;
+		try {
+			claims = Jwts.parser()
+					.setSigningKey(secretKey)
+					.parseClaimsJws(token)
+					.getBody();
+		} catch (Exception e) {
+			claims = null;
+		}
+		return claims;
 	}
 
 	private Key getSignInKey() {
@@ -98,6 +109,7 @@ public class JwtTokenUtils {
 		return Keys.hmacShaKeyFor(keyBytes);
 	}
 	public List<String> getRoles(String token) {
-		return extractAllClaims(token).get("permissions", List.class);
+		return extractAllClaims(token).get("roles", List.class);
 	}
+
 }

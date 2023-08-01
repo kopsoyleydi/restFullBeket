@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PermissionInterface {
 
-	Permissions getPermissionById(Long id);
+	List<Permissions> getPermissionById(Long id);
 
 	List<Permissions> getAllPermissions();
 }

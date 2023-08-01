@@ -6,10 +6,12 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public interface PermissionRepository extends JpaRepository<Permissions,Long> {
-	Permissions findAllById(Long id);
+	List<Permissions> findAllById(Long id);
 
 	Permissions findByRole(String role);
 }

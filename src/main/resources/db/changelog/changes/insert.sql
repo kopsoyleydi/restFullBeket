@@ -1,4 +1,4 @@
-INSERT INTO permissions (role)
+INSERT INTO permission (role)
 VALUES ('USER'),
        ('ADMIN');
 
@@ -42,11 +42,11 @@ VALUES ('Kazakhstan', 'KAZ'),
        ('Russia', 'RUS'),
        ('Kyrgyzstan', 'KGZ');
 
-INSERT INTO users (email, name,surname,  password,citizenship,patronymic,numberOfDocument, phoneNumber,   documentType, dateOfBirth)
+INSERT INTO users (email, name,surname,  password,citizenship_id_id,patronymic,number_of_document, phone_number,   document_type_id, date_of_birth)
 VALUES ('beks1004@mail.ru', 'Beksultan','Kuralbay', '$2a$10$Qtn4SBcyf4Kd7NqL376r2uz81astssB2108GfaS389IGctZhW8QbG',1,'Nurgisauly' ,'N23456',
         '+77024313845',  1,  '2004-07-10');
 
-INSERT INTO user_permissions (user_id, permission_id)
+INSERT INTO users_permissions (user_id, permissions_id)
 VALUES (1, 1),
        (1, 2);
 

@@ -44,7 +44,7 @@ CREATE TABLE document_type
     primary key (id)
 );
 
-CREATE TABLE permissions
+CREATE TABLE permission
 (
     id   bigint AUTO_INCREMENT,
     role VARCHAR(50),
@@ -59,14 +59,14 @@ CREATE TABLE users
     name             VARCHAR(255),
     surname          VARCHAR(255),
     password         VARCHAR(255),
-    citizenship      bigint,
+    citizenship_id_id      bigint,
     patronymic       VARCHAR(255),
-    numberOfDocument VARCHAR(50),
-    phoneNumber      VARCHAR(20),
-    documentType     bigint,
-    dateOfBirth      varchar(255),
-    FOREIGN KEY (citizenship) REFERENCES countries (id),
-    FOREIGN KEY (documentType) REFERENCES document_type (id),
+    number_of_document  VARCHAR(50),
+    phone_number      VARCHAR(20),
+    document_type_id     bigint,
+    date_of_birth      varchar(255),
+    FOREIGN KEY (citizenship_id_id) REFERENCES countries (id),
+    FOREIGN KEY (document_type_id) REFERENCES document_type (id),
     primary key (id)
 );
 CREATE TABLE roads
@@ -86,10 +86,10 @@ CREATE TABLE roads
     primary key (id)
 );
 
-CREATE TABLE user_permissions
+CREATE TABLE users_permissions
 (
     user_id       bigint,
-    permission_id bigint
+    permissions_id bigint
 );
 CREATE TABLE review
 (
@@ -112,12 +112,12 @@ CREATE TABLE ticket
     FOREIGN KEY (roadId) REFERENCES roads (id),
     primary key (id)
 );
-ALTER TABLE user_permissions
+ALTER TABLE users_permissions
     ADD CONSTRAINT FK_user_permissions_permission
-        FOREIGN KEY (permission_id) REFERENCES permissions (id)
+        FOREIGN KEY (permissions_id) REFERENCES permission (id)
             on delete cascade;
 
-ALTER TABLE user_permissions
+ALTER TABLE users_permissions
     ADD CONSTRAINT FK_user_permissions_users
         FOREIGN KEY (user_id) REFERENCES users (id)
             on delete cascade;
