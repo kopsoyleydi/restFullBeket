@@ -39,6 +39,7 @@ public class WithoutAuthRest {
 		return stationService.getStationsByCityId(cityId);
 	}
 
+
 	@GetMapping(value = "/getRoadByFilter")
 	public List<RoadsDTO> getRoadsByFilter(@RequestBody FilterDTO filterDTO){
 		return roadService.getRoadFyFilter(filterDTO);

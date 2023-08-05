@@ -11,10 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -109,7 +106,11 @@ public class JwtTokenUtils {
 		return Keys.hmacShaKeyFor(keyBytes);
 	}
 	public List<String> getRoles(String token) {
-		return extractAllClaims(token).get("roles", List.class);
+		List<String> roles = extractAllClaims(token).get("roles", List.class);
+		if (roles == null) {
+			return Collections.emptyList(); // вернуть пустой список
+		}
+		return roles;
 	}
 
 }

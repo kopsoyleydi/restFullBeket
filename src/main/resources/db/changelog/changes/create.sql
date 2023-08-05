@@ -10,18 +10,18 @@ create table stations
 CREATE TABLE buses
 (
     id        bigint AUTO_INCREMENT,
-    stationId bigint,
+    station_id_id bigint,
     places    INT,
-    govNumber VARCHAR(255),
-    FOREIGN KEY (stationId) REFERENCES stations (id),
+    gov_number VARCHAR(255),
+    FOREIGN KEY (station_id_id) REFERENCES stations (id),
     primary key (id)
 );
 
 CREATE TABLE cities
 (
     id        bigint AUTO_INCREMENT,
-    name      VARCHAR(50),
-    shortName VARCHAR(50),
+    name     VARCHAR(50),
+    short_name VARCHAR(50),
     primary key (id)
 );
 
@@ -29,18 +29,18 @@ CREATE TABLE countries
 (
     id        bigint AUTO_INCREMENT,
     name      VARCHAR(255),
-    shortName VARCHAR(50),
+    short_name VARCHAR(50),
     primary key (id)
 );
 CREATE TABLE cities_stations
 (
-    city_id    bigint,
-    station_id bigint
+    list_of_cities_id    bigint,
+    stations_id bigint
 );
 CREATE TABLE document_type
 (
     id           bigint AUTO_INCREMENT,
-    documentName VARCHAR(255),
+    document_name VARCHAR(255),
     primary key (id)
 );
 
@@ -72,17 +72,17 @@ CREATE TABLE users
 CREATE TABLE roads
 (
     id             bigint AUTO_INCREMENT,
-    departure      bigint,
-    arrival        bigint,
+    departure_id      bigint,
+    arrival_id        bigint,
     departure_time VARCHAR(50),
     arrival_time   VARCHAR(50),
     departure_date varchar(255),
     arrival_date   varchar(255),
     price          INT,
-    bus_id         bigint,
-    FOREIGN KEY (departure) REFERENCES cities (id),
-    FOREIGN KEY (arrival) REFERENCES cities (id),
-    FOREIGN KEY (bus_id) REFERENCES buses (id),
+    bus_id_id         bigint,
+    FOREIGN KEY (departure_id) REFERENCES cities (id),
+    FOREIGN KEY (arrival_id) REFERENCES cities (id),
+    FOREIGN KEY (bus_id_id) REFERENCES buses (id),
     primary key (id)
 );
 
@@ -105,11 +105,11 @@ CREATE TABLE ticket
 (
     id              bigint AUTO_INCREMENT,
     user_id         bigint,
-    primeCodeTicket BIGINT,
-    roadId          bigint,
+    prime_code_ticket BIGINT,
+    road_id_id          bigint,
     place           INT,
     FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (roadId) REFERENCES roads (id),
+    FOREIGN KEY (road_id_id) REFERENCES roads (id),
     primary key (id)
 );
 ALTER TABLE users_permissions
@@ -124,10 +124,10 @@ ALTER TABLE users_permissions
 
 ALTER TABLE cities_stations
     ADD CONSTRAINT FK_cities_stations_cities
-        FOREIGN KEY (city_id) REFERENCES cities (id)
+        FOREIGN KEY (list_of_cities_id) REFERENCES cities (id)
             on DELETE cascade;
 
 ALTER TABLE cities_stations
     ADD CONSTRAINT FK_cities_stations_stations
-        FOREIGN KEY (station_id) REFERENCES stations (id)
+        FOREIGN KEY (stations_id) REFERENCES stations (id)
             on DELETE cascade;
