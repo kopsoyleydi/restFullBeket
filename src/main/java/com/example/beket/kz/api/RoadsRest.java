@@ -1,6 +1,6 @@
 package com.example.beket.kz.api;
 
-import com.example.beket.kz.dto.FilterDTO;
+
 import com.example.beket.kz.dto.RoadsDTO;
 import com.example.beket.kz.service.RoadService;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +21,10 @@ public class RoadsRest {
 	}
 
 	@GetMapping(value = "/getRoadByFilter")
-	public List<RoadsDTO> getRoadsByFilter(@RequestBody FilterDTO filterDTO){
-		return roadService.getRoadFyFilter(filterDTO);
+	public List<RoadsDTO> getRoadsByFilter(@RequestParam String departureCity,
+	                                       @RequestParam String arrivalCity,
+	                                       @RequestParam String departureDate){
+		return roadService.getRoadFyFilter(departureCity, arrivalCity, departureDate);
 	}
 
 	@PostMapping(value = "/addNewRoad")

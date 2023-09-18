@@ -31,12 +31,10 @@ public class RoadService {
 		return roadsMapper.toDtoList(road.getAllRoads());
 	}
 
-	public List<RoadsDTO> getRoadFyFilter(FilterDTO filterDTO){
-		String departure = filterDTO.getDepartureCity();
-		String arrival = filterDTO.getArrivalCity();
-		String departureDate = filterDTO.getDepartureDate();
-		return roadsMapper.toDtoList(road.getRoadsFyFilter(departure,arrival,departureDate));
+	public List<RoadsDTO> getRoadFyFilter(String departureCity, String arrivalCity, String departureDate){
+		return roadsMapper.toDtoList(road.getRoadsFyFilter(departureCity,arrivalCity,departureDate));
 	}
+
 
 	public RoadsDTO addNewRoad(RoadsDTO roadsDTO){
 		ListOfRoads Ofroad = new ListOfRoads();

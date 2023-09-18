@@ -2,7 +2,6 @@ package com.example.beket.kz.api;
 
 
 import com.example.beket.kz.dto.MainUserDTO;
-import com.example.beket.kz.dto.TokenDTO;
 import com.example.beket.kz.service.UserRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +13,8 @@ public class UserRest {
 	private final UserRestService userRestService;
 
 	@GetMapping(value = "/getProfile")
-	public MainUserDTO getProfile(@RequestBody TokenDTO tokenDTO){
-		return userRestService.getProfile(tokenDTO.getToken());
+	public MainUserDTO getProfile(@RequestHeader("Authorization") String token){
+		return userRestService.getProfile(token);
 	}
 
 	@PutMapping (value = "/updateUserParam")
