@@ -40,14 +40,10 @@ public class JwtTokenUtils {
 		return claimsResolver.apply(claims);
 	}
 
-	public String generateToken(UserDetails userDetails) {
-		return generateToken(new HashMap<>(), userDetails);
-	}
-
 	public String generateToken(
-			Map<String, Object> extraClaims,
 			UserDetails userDetails
 	) {
+		Map<String, Object> extraClaims = new HashMap<>();
 		List<String> rolesList = userDetails.getAuthorities().stream()
 				.map(GrantedAuthority::getAuthority)
 				.toList();

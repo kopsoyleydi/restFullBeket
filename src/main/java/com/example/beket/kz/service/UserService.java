@@ -25,8 +25,6 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserImpl userImpl;
 
-	@Autowired
-	private RegistrationUserMapper registrationUserMapper;
 
 	@Autowired
 	private JwtTokenUtils jwtTokenUtils;
@@ -64,7 +62,7 @@ public class UserService implements UserDetailsService {
 
 	public User createNewUser(RegistrationUserDto registrationUserDto){
 		User user = new User();
-		user.setEmail(registrationUserDto.getEmail());
+		user.setUsername(registrationUserDto.getEmail());
 		user.setPermissions(permission.getPermissionById(1L));
 		user.setPassword(passwordEncoder.encode(registrationUserDto.getPassword()));
 		return userImpl.addUser(user);

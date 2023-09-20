@@ -17,7 +17,7 @@ import java.util.List;
 public class User extends BaseModel implements UserDetails {
 
 	@Column(name = "email")
-	private String email;
+	private String username;
 
 	@Column(name = "name")
 	private String name;
@@ -62,7 +62,7 @@ public class User extends BaseModel implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.email;
+		return this.username;
 	}
 
 	@Override

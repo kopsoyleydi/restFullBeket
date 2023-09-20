@@ -57,7 +57,7 @@ public class TicketService {
 			ticket.setUser(user);
 			ticket.setPrimeCodeTicket((long) generator.generateTicketNumber());
 			userImpl.updateParam(user);
-			emailTicketSender.sendEmail(user.getEmail(), "Your ticket",ticket);
+			emailTicketSender.sendEmail(user.getUsername(), "Your ticket",ticket);
 			return ticketMapper.toDto(ticketImpl.createTicket(ticket));
 		}
 		return null;
