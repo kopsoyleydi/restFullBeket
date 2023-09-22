@@ -21,9 +21,9 @@ public class RoadsRest {
 	}
 
 	@GetMapping(value = "/getRoadByFilter")
-	public List<RoadsDTO> getRoadsByFilter(@RequestParam String departureCity,
-	                                       @RequestParam String arrivalCity,
-	                                       @RequestParam String departureDate){
+	public List<RoadsDTO> getRoadsByFilter(@RequestParam(name = "departureCity") String departureCity,
+	                                       @RequestParam(name = "arrivalCity") String arrivalCity,
+	                                       @RequestParam(name = "departureDate") String departureDate){
 		return roadService.getRoadFyFilter(departureCity, arrivalCity, departureDate);
 	}
 
