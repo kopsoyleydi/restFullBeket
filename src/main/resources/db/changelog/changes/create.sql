@@ -101,7 +101,7 @@ CREATE TABLE review
     FOREIGN KEY (stationId) REFERENCES stations (id),
     primary key (id)
 );
-CREATE TABLE ticket
+CREATE TABLE tickets
 (
     id              bigint AUTO_INCREMENT,
     user_id         bigint,

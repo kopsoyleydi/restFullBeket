@@ -50,6 +50,6 @@ INSERT INTO users_permissions (user_id, permissions_id)
 VALUES (1, 1),
        (1, 2);
 
-INSERT INTO ticket (prime_code_ticket, road_id_id, user_id, place)
+INSERT INTO tickets (prime_code_ticket, road_id_id, user_id, place)
 VALUES (883802, 1, 1, 2),
        (209256, 1, 1, 15);
